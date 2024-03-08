@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="salesReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c765ff7d-6137-4278-ba28-a38ae30ecae6">
+	<parameter name="admin" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="book.title" class="java.lang.String"/>
+	<field name="bill.user.username" class="java.lang.String"/>
+	<field name="count" class="java.lang.Integer"/>
+	<field name="book.price" class="java.lang.Integer"/>
+	<field name="book.id" class="java.lang.Integer"/>
+	<variable name="bookCount" class="java.lang.Integer" resetType="Group" resetGroup="Group1" calculation="Sum">
+		<variableExpression><![CDATA[$F{count}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="bookRevenue" class="java.lang.Integer" resetType="Group" resetGroup="Group1">
+		<variableExpression><![CDATA[$V{bookCount} * $F{book.price}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="totalRevenue" class="java.lang.Integer" incrementType="Group" incrementGroup="Group1" calculation="Sum">
+		<variableExpression><![CDATA[$V{bookRevenue}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{book.id}]]></groupExpression>
+		<groupHeader>
+			<band height="81">
+				<textField>
+					<reportElement x="142" y="0" width="270" height="40" backcolor="#214F0A" uuid="e3a5f229-be04-4087-b804-90080a65e8ec"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Book : " + $F{book.title}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="157" y="40" width="240" height="40" backcolor="#214F0A" uuid="69ba0fdc-0781-49ae-bc73-32a8a73853dd"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Book price: " + $F{book.price}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="70">
+				<textField>
+					<reportElement x="157" y="30" width="240" height="30" backcolor="#F73531" uuid="740c66d2-ca94-4d21-8fce-dbc40754cc2b"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Total book revenue: " + $V{bookRevenue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="157" y="0" width="240" height="29" backcolor="#214F0A" uuid="15e1a539-aee7-4666-a585-bbe4f089aed3"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Sold: " + $V{bookCount}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch">
+			<textField>
+				<reportElement x="161" y="5" width="233" height="80" uuid="8eead146-86f1-4c6c-bafe-914d9779db4f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Book sales report for admin: " + $P{admin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="3" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="36" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement x="470" y="0" width="100" height="30" uuid="c19e67b3-16e0-46a1-a689-c46845b71fa0"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page: "  + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="56" splitType="Stretch">
+			<textField>
+				<reportElement x="180" y="20" width="195" height="30" uuid="35dc54df-e7f4-48a4-bdd2-ad9e42052b30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Total revenue: " + $V{totalRevenue}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
